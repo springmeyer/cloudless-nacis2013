@@ -1,0 +1,94 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset='utf-8'/>
+  <meta http-equiv='X-UA-Compatible' content='IE=8;FF=3;OtherUA=4' />
+  <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
+
+ <link href='https://api.tiles.mapbox.com/lib/css/embed.css?060acb48' type='text/css' rel='stylesheet' />
+ 
+  <link href='https://api.tiles.mapbox.com/mapbox.js/v1.3.1/mapbox.css' rel='stylesheet' />
+  <!--[if lte IE 8]>
+    <link href='https://api.tiles.mapbox.com/mapbox.js/v1.3.1/mapbox.ie.css' rel='stylesheet' />
+  <![endif]-->
+  <script type='text/javascript'>
+  window.tilejson = {
+  "attribution": "<a href='http:\/\/mapbox.com\/about\/maps' target='_blank'>Terms & Feedback<\/a>",
+  "bounds": [
+    -180,
+    -85,
+    180,
+    85
+  ],
+  "center": [
+    0,
+    0,
+    3
+  ],
+  "data": [
+    "http:\/\/a.tiles.mapbox.com\/v3\/herwig.map-jx7atbs4\/markers.geojsonp"
+  ],
+  "id": "herwig.map-jx7atbs4",
+  "maxzoom": 19,
+  "minzoom": 0,
+  "name": "NSA Time Map for Blog",
+  "private": true,
+  "scheme": "xyz",
+  "tilejson": "2.0.0",
+  "tiles": [
+    "http:\/\/a.tiles.mapbox.com\/v3\/herwig.map-jx7atbs4\/{z}\/{x}\/{y}.png",
+    "http:\/\/b.tiles.mapbox.com\/v3\/herwig.map-jx7atbs4\/{z}\/{x}\/{y}.png",
+    "http:\/\/c.tiles.mapbox.com\/v3\/herwig.map-jx7atbs4\/{z}\/{x}\/{y}.png",
+    "http:\/\/d.tiles.mapbox.com\/v3\/herwig.map-jx7atbs4\/{z}\/{x}\/{y}.png"
+  ],
+  "webpage": "http:\/\/a.tiles.mapbox.com\/v3\/herwig.map-jx7atbs4\/page.html",
+  "options": [
+    "share",
+    "zoompan",
+    "zoomwheel",
+    "zoombox",
+    "attribution",
+    "geocoder"
+  ]
+};
+  </script>
+
+  <base target='_parent' />
+</head>
+<body>
+
+<div class='ts-map mm zoompan zoomwheel zoombox attribution geocoder' id='map'>
+
+</div>
+
+<script src='https://api.tiles.mapbox.com/mapbox.js/v1.3.1/mapbox.js'></script>
+<script src='https://api.tiles.mapbox.com/lib/js/leaflet-hash.js?c83d2095' type='text/javascript' charset='utf-8'></script>
+<script>
+if (window.tilejson) window.onload = function() {
+    var tj = window.tilejson,
+        options = tj.options.join(' '),
+        include = function(option, attrib) {
+            return options.indexOf(option) >= 0 && (!attrib || tj[attrib]);
+        };
+
+    var map = L.mapbox.map('map', tilejson, {
+        minZoom: tilejson.minzoom,
+        maxZoom: tilejson.maxzoom,
+        attributionControl: false,
+        gridLayer: !!tilejson.grids,
+        gridControl: !!tilejson.grids,
+        scrollWheelZoom: include('zoomwheel'),
+        legendControl: include('legend'),
+        zoomControl: false
+    }).setView([tilejson.center[1], tilejson.center[0]], tilejson.center[2]);
+    map.zoom(12, true);
+
+    map.hashControl = L.hash(map);
+
+    if (tilejson.data) map.addLayer(L.mapbox.markerLayer(tilejson.data));
+    if (include('geocoder', 'geocoder')) map.addControl(L.mapbox.geocoderControl(tilejson));
+};
+</script>
+</body>
+</html>

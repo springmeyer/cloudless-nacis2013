@@ -1,0 +1,117 @@
+<!DOCTYPE html><html><head><title>Big</title><meta charset='utf-8'><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" /><link href='big.css' rel='stylesheet' type='text/css' /><script src='big.js'></script></head><body>
+
+<div><img src="bahamas.png" />A Cloudless Atlas</div>
+<div><img src="bahamas.png" />Dane Springmeyer @MapBox</div>
+
+<div><img src="modis.jpg" /></div>
+<div><img src="cloudless.png" /></div>
+
+<div>Basics</div>
+<div>
+NASA LANCE-MODIS<br>
+z0 - z8 <br>
+Several month effort<br>
+A team of 2+ <br>
+</div>
+
+<div>History</div>
+<div>In reality many years in the making</div>
+<div>Open source collaboration at its best</div>
+
+<div><img src='history.png' /></div>
+
+<div>MapBox Satellite Team</div>
+<div><img src="charlie.jpg" /><br>Charlie</div>
+<div><img src="chris.jpg" /><br>Chris</div>
+<div><img src="bruno.jpg" /><br>Bruno</div>
+
+<div>Goals</div>
+<div>
+Cloudless<br>
+Seamless<br>
+Single spatial resolution<br>
+A living and dynamic planet<br>
+A gorgeous canvas<br>
+</div>
+
+<div><img src='single-resolution.png' /><br><br><br>mapbox vs. google</div>
+<div><img src='low-res-higher-quality.png' /><br><br><br>mapbox vs. google</div>
+
+<div>Methods</div>
+<div>Download all the data (with NASA's help)</div>
+<div>Push to Amazon s3 for storage</div>
+
+<div>Break up work across virtual machines</div>
+
+<div>
+For a given area<br>
+on a given machine<br>
+read in dozens of scenes<br>
+(Over time / even *seasons)<br>
+</div>
+
+<div>Score each pixel on `quality`</div>
+<div><img src="quality-algo.png" /></div>
+<div>
+Sort pixels across every image<br>
+in memory<br>
+by the quality value</div>
+
+<div><img src="unsorted.jpg" /></div>
+<div><img src="sorted.jpg" /></div>
+<div>Output the highest quality scenes as new images</div>
+<div>Mosiac images with GDAL VRT and style them in TileMill</div>
+<div><img src="tilemill.png" /></div>
+<div>Apply a blurred mask to oceans</div>
+<div>Render web tiles</div>
+
+
+<div>A <a href="http://bl.ocks.org/springmeyer/6925212">Tour!</a></div>
+
+<div>Challenges</div>
+<div>Size</div>
+
+<div>
+2 years of imagery<br>
+Nearly 400,000 images<br>
+16 megapixels each <br>
+2/3 terrabyte in total<br>
+~5 billion pixels<br>
+</div>
+
+<div>Accessing the imagery from NASA, only worked with good communication</div>
+
+<div>Memory</div>
+<div>
+For fast sorting you need contiguous, in-memory, multi-dimensional arrays<br>
+Each array over 9.5 GB!<br>
+</div>
+
+<div>Memory efficient c++ port + large Amazon Ec2s + sharded jobs</div>
+
+
+<div>Tools</div>
+<div>
+GDAL, the workhorse<br>
+ImageMagick, prototyping<br>
+Numpy, prototyping<br>
+Amazon S3, Storage<br>
+WEBP encoding<br>
+Mapnik, image i/o<br>
+C++, declouding algorithms
+</div>
+
+<div>Next Steps</div>
+<div>
+Apply methods to Landsat 6/7/8<br>
+Color matching between zooms/sources<br>
+More CPU and GPU parallization in code<br>
+</div>
+
+
+<div>Future work: Landsat</div>
+<div><img src='landsat-couv-now.png'/></div>
+<div><img src='landsat-couv.jpg'/></div>
+
+<div><img src="bahamas.png" />Thanks!<br>Dane Springmeyer @MapBox</div>
+

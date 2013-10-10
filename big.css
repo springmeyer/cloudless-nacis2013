@@ -1,0 +1,30 @@
+body {
+    background-color:#505050;
+    -background: url('wood.jpg');
+    color:#F0EFEE;
+    font-family: 'Gentium Basic', serif;
+    text-shadow:
+        0 0 2px #000,
+        0 0 5px #516096,
+        0 0 10px #516096,
+        0 0 30px #516096;
+    -margin: 0px;
+    -padding: 0px;
+}
+
+dimg {
+    width:100%;
+    margin: 0px;
+    padding: 0px;
+}
+
+em {
+    font-weight:700;
+    color:#C3EEED;
+}
+
+a {
+    font-weight:700;
+    color:#C3EEED;
+    text-decoration:none;
+}

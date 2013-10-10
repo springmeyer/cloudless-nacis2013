@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<Html>
+<Head>
+<Meta charset=utf-8 />
+<Title></Title>
+  <Script src='https://api.tiles.mapbox.com/mapbox.js/v0.6.7/mapbox.js'></Script>
+  <Link href='https://api.tiles.mapbox.com/mapbox.js/v0.6.7/mapbox.css' rel='stylesheet' />
+  
+  <Style>
+    body { margin:0; padding:0; }
+    #map { position:absolute; top:0; bottom:0; width:100%; }
+  </Style>
+</Head>
+<Body>
+<Style>
+#output {
+    position:absolute;
+    top:10px;
+    right:10px;
+    padding:10px;
+    background:#fff;
+    z-index:100;
+}
+</Style>
+
+<Div id='output'>
+    <Code id='click'></Code><Br />
+</Div>
+<Div id='map'></Div>
+<Script>
+var map2;
+var c;
+var click = document.getElementById('click'),
+    mousemove = document.getElementById('mousemove');
+mapbox.auto('map', 'herwig.map-jx7atbs4', function(map) {
+    map2 = map;
+    MM.addEvent(map.parent, 'click', function(e) {
+        var px = MM.getMousePoint(e, map);
+        var pt = map.pointLocation(px);
+        click.innerHTML = '{ place: \'x\', lat: ' +pt.lat + ', lon: ' + pt.lon + ', zoom:' + map.coordinate.zoom + ' },[';
+    });
+});
+</Script>
+</Body>
+</Html>
